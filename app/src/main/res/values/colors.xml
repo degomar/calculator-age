@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="titleCalc">#264653</color>
     <color name="bgColor">#e9c46a</color>
+    <color name="btnBgColor">#2a9d8f</color>
+    <color name="lightGrayTxt">#395753</color>
 </resources>
