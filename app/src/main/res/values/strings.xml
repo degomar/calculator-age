@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Idade em minutos</string>
+    <string name="tv_data_selecionada">data selecionada</string>
+    <string name="tv_data_setada">dd/mm/aaaa</string>
+    <string name="btn_calendar">Selecionar Data</string>
+    <string name="tv_data_em_minutos">Em minutos até o dia de hoje</string>
 </resources>

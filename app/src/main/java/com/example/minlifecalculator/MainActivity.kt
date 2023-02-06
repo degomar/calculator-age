@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btn_select_date.setOnClickListener {
-            //teste()
+
             clickDatePicker()
         }
 
@@ -32,23 +32,33 @@ class MainActivity : AppCompatActivity() {
         val year = myCalendar.get(Calendar.YEAR)
         val month = myCalendar.get(Calendar.MONTH)
         val day = myCalendar.get(Calendar.DAY_OF_MONTH)
-        DatePickerDialog(this,
+
+        var dtPicker = DatePickerDialog(this,
             DatePickerDialog.OnDateSetListener {view, selected_year, selected_month, selected_dayOfMonth ->
-            teste()
+
                 var selectedDate = "$selected_dayOfMonth/${selected_month+1}/$selected_year"
                 set_date_txt?.text = selectedDate
 
-                var sdf = SimpleDateFormat("dd//MM/yyyy", Locale.ENGLISH)
-                var finalDate = sdf.parse(selectedDate)
+                var sdf = SimpleDateFormat("dd/MM/yyyy")
+                val finalDate = sdf.parse(selectedDate) //verificar o erro de parse
+                finalDate?.let {
+                    val selectDateInMinutes = finalDate.time / 6000
+                    val currentDate = sdf.parse(sdf.format(System.currentTimeMillis()))
+                    currentDate?.let {
+                        val currentDateInMinutes = currentDate.time / 6000
+                        val differenceInMinutes = currentDateInMinutes - selectDateInMinutes
+                        set_minutes_txt?.text = differenceInMinutes.toString()
+                    }
+
+                }
+
         },
             year,
             month,
-            day).show()
+            day)
+
+            dtPicker.datePicker.maxDate = System.currentTimeMillis() - 8640000
+            dtPicker.show()
     }
 
-    fun teste(){
-        Toast.makeText(this,
-        "Data Selecionada com sucesso",
-        Toast.LENGTH_LONG).show()
-    }
 }
